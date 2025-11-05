@@ -52,3 +52,73 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+# Qt-specific
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+*.obj
+*.o
+*.so
+*.dll
+*.dylib
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+*build-*
+*.autosave
+
+# C++ build artifacts
+*.a
+*.la
+*.lo
+*.slo
+*.ko
+*.elf
+*.out
+*.app
+
+# Compiled Dynamic libraries
+*.so.*
+*.dylib
+
+# Compiled Static libraries
+*.lai
+
+# Qt-Creator
+CMakeLists.txt.user*
+*.qmlproject.user
+*.qmlproject.user.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build directories
+build/
+debug/
+release/
+Debug/
+Release/
+x64/
+x86/
+
+# Models (large files - add instructions to download instead)
+models/*.pdmodel
+models/*.pdiparams
+models/*.pdiparams.info
+
+# Generated files
+*.log
+core
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.tmp
