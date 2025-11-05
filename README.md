@@ -43,20 +43,20 @@ sudo apt-get install -y \
     libprotobuf-dev \
     build-essential
 ```
-## Installation
+# Installation
 
-# 1. Clone the Repository
+## 1. Clone the Repository
 ```bash
 git clone https://github.com/YOUR_USERNAME/PaddleOCR_Qt.git
 cd PaddleOCR_Qt
 ```
-# 2. Copy PaddleOCR Source Files
+## 2. Copy PaddleOCR Source Files
 ``` bash
 # Copy from your PaddleOCR C++ inference directory
 cp -r /path/to/PaddleOCR/deploy/cpp_infer/src .
 cp -r /path/to/PaddleOCR/deploy/cpp_infer/include
 ```
-# 3. Download Models
+## 3. Download Models
 ```bash
 # Download the pre-trained models:
 bashmkdir -p models
@@ -77,7 +77,7 @@ tar -xf ch_ppocr_mobile_v2.0_cls_infer.tar -C models/
 # English Dictionary
 wget https://raw.githubusercontent.com/PaddlePaddle/PaddleOCR/release/2.6/ppocr/utils/en_dict.txt -O models/en_dict.txt
 ```
-### 4. Install Paddle Inference
+## 4. Install Paddle Inference
 Download and extract Paddle Inference library:
 ```bash
 # For CPU version
@@ -86,9 +86,9 @@ tar -xzf paddle_inference.tgz
 ```
 
 # Update the path in PaddleOCR_Qt.pro
-# PADDLE_LIB = /absolute/path/to/paddle_inference
+PADDLE_LIB = /absolute/path/to/paddle_inference
 
-# 5. Configure Project
+## 5. Configure Project
 Edit PaddleOCR_Qt.pro and update these paths:
 
 PADDLE_LIB: Your Paddle Inference installation path
@@ -97,7 +97,7 @@ OpenCV include paths (if not in standard locations)
 Edit main.cpp and update model paths in the MainWindow constructor:
 cppQString modelBasePath = "/absolute/path/to/models";
 
-# 6. Build the Project
+## 6. Build the Project
 Using Qt Creator:
 
 Open Qt Creator
@@ -106,7 +106,7 @@ Configure your Qt kit
 Build → Build Project (Ctrl+B)
 Run (Ctrl+R)
 
-# Using Command Line:
+## Using Command Line:
 ```bash
 qmake PaddleOCR_Qt.pro
 make -j$(nproc)
@@ -120,7 +120,9 @@ Click "Run OCR" to perform text detection and recognition
 View results in the right panel
 Bounding boxes and numbered labels will appear on the image
 
-## Project Structure
+# Project Structure
+
+```text
 PaddleOCR_Qt/
 ├── PaddleOCR_Qt.pro       # Qt project file
 ├── main.cpp               # Main application (single file)
@@ -129,6 +131,7 @@ PaddleOCR_Qt/
 ├── models/                # Pre-trained models
 ├── .gitignore
 └── README.md
+```
 
 ## Configuration
 You can adjust OCR parameters in main.cpp in the PaddleOCRWrapper constructor:
@@ -138,29 +141,29 @@ config_.det_db_box_thresh = 0.6;      // Box threshold
 config_.cls_thresh = 0.9;             // Classification threshold
 config_.cpu_math_library_num_threads = 10;  // CPU threads
 
-## Troubleshooting
-# Library Loading Errors
+# Troubleshooting
+## Library Loading Errors
 bash# Add to ~/.bashrc or run before launching
 export LD_LIBRARY_PATH=/path/to/paddle_inference/paddle/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/path/to/paddle_inference/third_party/install/protobuf/lib:$LD_LIBRARY_PATH
-# Model Loading Failed
 
+## Model Loading Failed
 Ensure model directories contain inference.pdmodel and inference.pdiparams
 Check file permissions: chmod -R 755 models/
 Verify paths are absolute in main.cpp
 
-# OpenCV Not Found
+## OpenCV Not Found
 bash# Find OpenCV installation
 pkg-config --cflags --libs opencv4
 
-# Update INCLUDEPATH in .pro file
+## Update INCLUDEPATH in .pro file
 Performance Tips
 
 *CPU Optimization*: Adjust cpu_math_library_num_threads based on your CPU cores
 *GPU Acceleration*: Set config_.use_gpu = true and use CUDA-enabled Paddle Inference
 *Batch Processing*: Increase rec_batch_num for multiple images
 
-# License
+## License
 This project uses PaddleOCR which is licensed under Apache License 2.0.
 See the [License](LICENSE) file for details.
 
